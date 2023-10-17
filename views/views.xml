@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="financial_accounting_statement_form">
+        <field name="name">financial.accounting.statement.form</field>
+        <field name="model">financial.accounting.statement</field>
+        <field name="arch" type="xml">
+            <form string="Ajouter des prestations">
+            <sheet>  
+            <group>
+                
+                <label for="date_deb" string="Période"/>
+                <div>
+                    <field name="date_deb" class="oe_inline"/> AU <field name="date_fin" class="oe_inline"/>
+                </div>
+                <label for="company" string="Société"/>
+                <div>
+                    <field name="company" string="société"/>
+                </div>
+                  
+            </group>
+            </sheet>  
+            <footer>
+                <button name="generate" string="Générer" type="object" class="oe_highlight"/>
+                <button string="Annuler" special="cancel"/>
+            </footer>
+            </form>
+        </field>
+    </record>
+    <record id="financial_accounting_statement" model="ir.actions.act_window">
+        <field name="name">Générer l'ECF</field> 
+        <field name="res_model">financial.accounting.statement</field>
+        <field name="view_id" ref="financial_accounting_statement_form"/>
+        <field name="target">new</field>
+        <field name="view_mode">form</field>
+     </record>
+
+    <menuitem id="norm_menu" name="ECF" parent="account_reports.account_reports_audit_reports_menu" action="financial_accounting_statement" />
+
+
+</odoo>
